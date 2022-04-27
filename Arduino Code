@@ -1,1 +1,107 @@
+```c
+//Libraries
+#include <DHT.h>
+#include <LiquidCrystal.h>                  //the liquid crystal library contains commands for printing to the display
+LiquidCrystal lcd(42, 40, 38, 36, 34, 32);    // tell the RedBoard what pins are connected to the display
 
+//Constants
+#define DHTPIN 7     // what pin we're connected to
+#define DHTTYPE DHT22   // DHT 22  (AM2302)
+
+DHT dht(DHTPIN, DHTTYPE); //// Initialize DHT sensor for normal 16mhz Arduino
+
+//Variables
+int chk;
+float hum;  //Stores humidity value
+float temp; //Stores temperature value
+float btemp; //stores last temperature value read for error
+int tempf;
+int soilM = 0;
+int soilPin = A0;
+int soilPower = 3;
+int pump=6;
+int fan=5;
+int i=0;
+
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(pump, OUTPUT);
+  pinMode(fan, OUTPUT);
+  pinMode(soilPower, OUTPUT);
+
+  digitalWrite(soilPower, LOW);
+  
+  dht.begin();
+  
+  lcd.begin(16, 2);                         //tell the lcd library that we are using a display that is 16 characters wide and 2 characters high
+  lcd.clear();                              //clear the display
+  lcd.setCursor(0, 0);                      //set the cursor to the top left position
+  lcd.print("Degrees F: ");                 //print a label for the data
+  lcd.setCursor(0, 1);                      //set the cursor to the lower left position
+  lcd.print("Humidity: ");                 //Print a label for the data
+}
+
+int readSoil()
+{
+  digitalWrite(soilPower, HIGH);
+  delay(10);
+  soilM = analogRead(soilPin);
+  digitalWrite(soilPower, LOW);
+  return soilM;
+}
+
+void loop()
+{
+   
+    //Read data and store it to variables hum and temp
+    hum = dht.readHumidity();
+    temp= dht.readTemperature();
+  
+    tempf=(temp*9/5)+32;
+  
+ 
+if (tempf!= 0){
+  lcd.setCursor(11, 0);                      //set the cursor to the top left position
+  lcd.print(tempf);                            //print the degrees Celsius
+  lcd.print("   ");
+
+  lcd.setCursor(10, 1);                      //set the cursor to the lower left position
+  lcd.print(hum);                   //print the degrees Fahrenheit
+  lcd.print(" ");
+}
+
+  delay(2000);                        //set timing of each loop to 2 seconds
+  
+  if (tempf >= 75){
+    if (i==0) {
+    digitalWrite(fan,HIGH);
+    }
+  }
+  if (tempf < 75){
+    if (i==85){
+    digitalWrite(fan, LOW);
+  }
+  }
+ 
+  if (soilM < 350){
+    if(i==10){
+    digitalWrite(pump, HIGH);
+    }
+    if(i==12) {
+      digitalWrite(pump, LOW);
+    }
+  }
+  if (soilM >= 350){
+    if(i==12){
+    digitalWrite(pump, LOW);
+    }
+  }
+  
+  i=i+1;
+  
+  if (i==93) {
+    i=0;
+  }
+  }
+```
