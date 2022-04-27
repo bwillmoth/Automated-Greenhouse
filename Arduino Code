@@ -1,4 +1,4 @@
-```c
+
 //Libraries
 #include <DHT.h>
 #include <LiquidCrystal.h>                  //the liquid crystal library contains commands for printing to the display
@@ -104,4 +104,4 @@ if (tempf!= 0){
     i=0;
   }
   }
-```
+
