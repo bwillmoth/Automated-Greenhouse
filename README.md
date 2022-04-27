@@ -11,7 +11,7 @@ The automated greenhouse measures 13 by 17 inches, allowing ample space to fit m
 ![image](https://user-images.githubusercontent.com/102317706/165352077-04833366-79a6-4dd3-8340-3d751659f54e.png)
 
 ### CAD Drawings
-A model of the greenhouse structure, and the location of the different components within the automated greenhouse can be seen in the two figures below. When reassembling, the location of the components within the structure are not critical, as long as the components are present. 
+A model of the greenhouse structure, and the location of the different components within the automated greenhouse can be seen in the two figures below. When reassembling, the location of the components within the structure are not critical, as long as the components are present. Additionally, the structure can be built to whatever shape is desired. The overall size should remain close to the orginal design to ensure the fan is sized adequately to provide cooling for the greenhouse.
 #### Structure with Automated Components
 
 ![image](https://user-images.githubusercontent.com/102317706/165413048-f69a8ef8-a889-48ad-b2b0-4d182666df73.png)
