@@ -134,7 +134,7 @@ The final design consists of the following:
   - Soil moisture sensor (SparkFun SEN-13637) 
   - Temperature and humidity sensor (HiLetGo DHT22) 
   - LCD display (SparkFun ADM1602K) 
-  - DC motor fan () 
+  - DC motor fan
   - Water pump (Gikfun EK1374) 
   - Polycarbonate Structure
 
